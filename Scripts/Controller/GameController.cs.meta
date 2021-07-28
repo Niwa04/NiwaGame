@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9b30d8b1c5b424f428025b35fca86312
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - gameData: {fileID: 11400000, guid: a80ee236a93224c47b7032fe3fc0461e, type: 2}
+  - joyesticks: {instanceID: 0}
+  - cameraAndroid: {instanceID: 0}
+  - cameraPC: {instanceID: 0}
+  - activeP: {instanceID: 0}
+  - cam2: {instanceID: 0}
+  - cameraCombat: {instanceID: 0}
+  - DialogManager: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
