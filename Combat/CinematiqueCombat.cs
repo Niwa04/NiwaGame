@@ -24,8 +24,7 @@ public class CinematiqueCombat : MonoBehaviour
    public void endCombat()
     {
           foreach (var item in GameObject.FindGameObjectsWithTag("Player"))
-          {
-              
+          {   
                 item.GetComponent<CompanionInput>().navAgent.isStopped = true;
                 item.GetComponent<CompanionInput>().navAgent.speed = 0;
                 item.GetComponent<ActionManager>().enCombat = false;

@@ -30,15 +30,6 @@ public class PersonnageDataManager : MonoBehaviour
         hpCurrent = perso.hpMax;
         if(perso.strategies != null && perso.strategies.Length >0)
             perso.strategieCurrent = perso.strategies[0];
-            try
-            {
-               FindObjectOfType<UiManager>().UpdateButtonStrategie();
-
-            }
-            catch (System.Exception)
-            {
-                
-            }
 
         initCaracteristique();
         if(FindObjectOfType<UiManager>() == null){

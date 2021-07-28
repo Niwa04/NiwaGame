@@ -238,8 +238,6 @@ namespace TPCWC
             FindObjectOfType<CombatManager>().cercleSelect.transform.position = FindObjectOfType<GameController>().activeP.transform.position;
             FindObjectOfType<CombatManager>().cercleSelect.transform.SetParent(FindObjectOfType<GameController>().activeP.transform);
             FindObjectOfType<CrystalManager>().afficherCrystals();
-             FindObjectOfType<UiManager>().UpdateButtonStrategie();
-             FindObjectOfType<CombatManager>().updateUIbuttonStrat(indexStrategieCurrent());
              FindObjectOfType<CameraControllerStrategie>().target = FindObjectOfType<GameController>().activeP.transform;
            // FindObjectOfType<GameController>().cameraCombat.transform.position = transform.position;
            // GameObject cible =  FindCible.findEnemyLePlusProche(transform);

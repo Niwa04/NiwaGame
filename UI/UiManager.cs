@@ -38,23 +38,4 @@ public class UiManager : MonoBehaviour
         
     }
 
-   public void UpdateButtonStrategie(){
-        GameObject a = FindObjectOfType<GameController>().activeP.transform.gameObject;
-       PersonnageDataManager perso = a.GetComponent<PersonnageDataManager>();
-       string name = perso.perso.strategieCurrent.name;
-        Strategie[] strats = perso.perso.strategies;
-        for (int i = 0; i < 3; i++)
-        {
-            try
-            {
-                    imageStrategie[i].sprite = strats[i].logo;
-        
-            }
-            catch (System.Exception)
-            {
-            }
-        }
-    }
-
-
 }

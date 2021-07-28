@@ -5,9 +5,7 @@ using TPCWC;
 
 public class PersoButtonSelection : MonoBehaviour
 {
-
     public PersonnageDataManager perso;
-
     public void changePerso(){
         perso.GetComponent<CompanionInput>().goPointNull();
         if(perso != null)

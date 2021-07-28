@@ -22,12 +22,10 @@ public class BarreLifeAllMonstreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-           if (Input.GetKeyDown("v"))
+        if (Input.GetKeyDown("v"))
         {
-                    StartCoroutine(finCombat());
-            
+            StartCoroutine(finCombat());    
         }
-
     }
 
 
@@ -39,14 +37,14 @@ public class BarreLifeAllMonstreScript : MonoBehaviour
           }
           init = true;
     }
-  public  void updateProgression(){
-      if(!init)
+    public void updateProgression(){
+        if(!init)
           initHPMAX();
         int HPCurrent = 0;
         foreach (var item in GameObject.FindGameObjectsWithTag("Enemy"))
-          {
-              HPCurrent += item.GetComponent<PersonnageDataManager>().hpCurrent;
-          }
+        {
+            HPCurrent += item.GetComponent<PersonnageDataManager>().hpCurrent;
+        }
         if(HPCurrent == 0 && !end ){
             end = true;
             StartCoroutine(finCombat());
@@ -54,16 +52,12 @@ public class BarreLifeAllMonstreScript : MonoBehaviour
         float a = (float) HPCurrent / (float) HPMax;
         lifeBarre.fillAmount = a;        
     }
-IEnumerator finCombat(){
-    yield return new WaitForSeconds(3f);
-    Destroy(FindObjectOfType<CombatManager>().cercleSelect);
-    FindObjectOfType<CinematiqueCombat>().endCombat();
-    yield return new WaitForSeconds(7f);
-    SceneManager.LoadSceneAsync( FindObjectOfType<GameController>().gameData.ScenePrecedente);
-    
-
-}    
-
-
+    IEnumerator finCombat(){
+        yield return new WaitForSeconds(3f);
+        Destroy(FindObjectOfType<CombatManager>().cercleSelect);
+        FindObjectOfType<CinematiqueCombat>().endCombat();
+        yield return new WaitForSeconds(7f);
+        SceneManager.LoadSceneAsync( FindObjectOfType<GameController>().gameData.ScenePrecedente);
+    }    
 
 }
