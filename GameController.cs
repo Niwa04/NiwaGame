@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Doublsb.Dialog;
 using ThirdPersonCamera;
+using UnityEngine.Playables;
 
 namespace TPCWC{
 	public class GameController : MonoBehaviour {
@@ -17,6 +18,8 @@ namespace TPCWC{
 
 		public GameObject cameraAndroid;
 		public GameObject cameraPC;
+
+		public PlayableDirector playableDirector;
 
 		#region Inspector Variables
 		
@@ -33,7 +36,11 @@ namespace TPCWC{
 
 		public bool canSwitch = true;
 		public float time;
-    public List<GameObject> checkpoints;   
+    public List<GameObject> checkpoints;  
+	private  List<GameObject> saut;
+	private  List<GameObject> pousse;
+	private  List<GameObject> lire;
+
 	private int currentCP;
 
 
@@ -55,8 +62,30 @@ namespace TPCWC{
 
 				}
 			}catch{}
+			InitObjectInteractible();
+			afficheCompetenceSpecialDuPerso();
+							ToggleFollowInactivePlayers();
+
 		}
 
+		public void InitObjectInteractible(){
+			saut = new List<GameObject>();
+			pousse = new List<GameObject>();
+			lire = new List<GameObject>();
+
+			foreach (var item in GameObject.FindGameObjectsWithTag("Saut"))
+        	{
+				saut.Add(item);
+        	}
+			foreach (var item in GameObject.FindGameObjectsWithTag("Pousse"))
+        	{
+				pousse.Add(item);
+        	}
+			foreach (var item in GameObject.FindGameObjectsWithTag("Livre"))
+        	{
+				lire.Add(item);
+        	}
+		}
 		//Initialize
 		void InitializePlayers(){
 			activePlayer(activeP);
@@ -68,6 +97,8 @@ namespace TPCWC{
 
         	if(canSwitch && Input.GetKeyDown("t")){
 				switchPlayer();
+				ToggleFollowInactivePlayers();
+
 			}
 
 			if(Input.GetKeyDown("u")){
@@ -106,7 +137,38 @@ namespace TPCWC{
 			disablePersonnage(persoActuel);
 			enablePersonnageAndSetAsMainPlayer(nexPerso);	
 			activePlayer(nexPerso);
+			afficheCompetenceSpecialDuPerso();
 
+		}
+
+		public void afficheCompetenceSpecialDuPerso(){
+			string name = activeP.gameObject.name;
+			Debug.Log("Affiche competence pour "+name);
+			masqueComp(lire);
+			masqueComp(saut);
+			masqueComp(pousse);
+
+
+			if(name == "Sakura")
+				afficheComp(lire);
+			if(name == "Jiyeon")
+				afficheComp(saut);
+			if(name == "Marcus")
+				afficheComp(pousse);
+		}
+
+		void afficheComp(List<GameObject> l){
+			foreach (var item in l)
+        	{	
+				Debug.Log("Activation de "+item);
+            	item.SetActive(true);
+        	}
+		}
+		void masqueComp(List<GameObject> l){
+			foreach (var item in l)
+        	{
+            	item.SetActive(false);
+        	}
 		}
 
 		public InputManager findNextPlayer(){
@@ -146,6 +208,8 @@ namespace TPCWC{
 					activeP = p;
 				}else{
 					inactivePlayers.Add(item);
+					if(item.GetComponent<CompanionInput>() == null)
+						Debug.Log("Le probleme est "+item);
 					item.GetComponent<CompanionInput>().followTarget = p.transform;
 
 				}

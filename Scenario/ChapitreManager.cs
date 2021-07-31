@@ -44,7 +44,9 @@ public class ChapitreManager : MonoBehaviour
             testReadFile();
         if(FindObjectOfType<GameController>().gameData.newGame){
             FindObjectOfType<EvenementManager>().clearEvents();
+           // cutscene.Play();
             FindObjectOfType<GameController>().gameData.newGame = false;
+            ArriverApresCombat();
         }else{
             ArriverApresCombat();
         }
