@@ -30,7 +30,8 @@ public class ApolloGambit : Gambit
         string cri = GetComponent<CristalScript>().hasCPlus() ;
 
         cibleCurrent = cible;
-        dis  = Vector3.Distance(cibleCurrent.transform.position, transform.position);
+        if(cibleCurrent != null)
+            dis  = Vector3.Distance(cibleCurrent.transform.position, transform.position);
 
         if(cibleCurrent == null){
             Debug.Log("Apollo ne trouve pas de cible");

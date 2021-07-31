@@ -11,6 +11,8 @@ public class UiManager : MonoBehaviour
 
     public Text text1;
     public Text text2;
+
+    public Text dialogue;
     public GameData gameData;
     // Start is called before the first frame update
     void Start()
@@ -32,29 +34,12 @@ public class UiManager : MonoBehaviour
 				text2.text = "Combat Desactivé";
 			}
 		}
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   public IEnumerator afficheDialogue(string dialogue, float time){
+        this.dialogue.text = dialogue;
+         this.dialogue.gameObject.GetComponent<Animator>().SetTrigger("display");
+        yield return new WaitForSeconds(time);
+         this.dialogue.gameObject.GetComponent<Animator>().SetTrigger("masque");
 
-   public void UpdateButtonStrategie(){
-        GameObject a = FindObjectOfType<GameController>().activeP.transform.gameObject;
-       PersonnageDataManager perso = a.GetComponent<PersonnageDataManager>();
-       string name = perso.perso.strategieCurrent.name;
-        Strategie[] strats = perso.perso.strategies;
-        for (int i = 0; i < 3; i++)
-        {
-            try
-            {
-                    imageStrategie[i].sprite = strats[i].logo;
-        
-            }
-            catch (System.Exception)
-            {
-            }
-        }
     }
-
 
 }
